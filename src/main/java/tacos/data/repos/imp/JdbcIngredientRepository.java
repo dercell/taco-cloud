@@ -16,6 +16,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -35,7 +36,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
     @Override
     public Ingredient save(Ingredient ingredient) {
         jdbcTemplate.update("insert into Ingredient(id, name, type) values (?,?,?)", ingredient.getId(), ingredient.getName(), ingredient.getType().toString());
-        return Ingredient;
+        return ingredient;
     }
 
     private Ingredient mapRowToIngredient(ResultSet row, int rowNum) throws SQLException {
