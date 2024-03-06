@@ -10,7 +10,7 @@ import tacos.data.Ingredient.Type;
 import tacos.data.Ingredient;
 import tacos.data.Taco;
 import tacos.data.TacoOrder;
-import tacos.data.repos.JdbcIngredientRepository;
+import tacos.data.repos.IngredientRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
-    private final JdbcIngredientRepository ingredientRepository;
+    private final IngredientRepository ingredientRepository;
 
-    public DesignTacoController(JdbcIngredientRepository ingredientRepository) {
+    public DesignTacoController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
