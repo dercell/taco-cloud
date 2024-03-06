@@ -6,15 +6,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import tacos.data.Ingredient;
 
-import tacos.data.repos.IngredientRepository;
+import tacos.data.repos.JdbcIngredientRepository;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private IngredientRepository ingredientRepository;
+    private JdbcIngredientRepository ingredientRepository;
 
     @Autowired
-    public IngredientByIdConverter(IngredientRepository ingredientRepository) {
+    public IngredientByIdConverter(JdbcIngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 

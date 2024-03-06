@@ -2,7 +2,6 @@ package tacos.data.repos.imp;
 
 import org.springframework.asm.Type;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
@@ -12,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import tacos.data.Ingredient;
 import tacos.data.Taco;
 import tacos.data.TacoOrder;
-import tacos.data.repos.OrderRepository;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -20,12 +18,12 @@ import java.sql.Types;
 import java.util.List;
 
 @Repository
-public class JdbcOrderRepository implements OrderRepository {
+public class JdbcJdbcOrderRepository implements tacos.data.repos.JdbcOrderRepository {
 
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcOrderRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcJdbcOrderRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
