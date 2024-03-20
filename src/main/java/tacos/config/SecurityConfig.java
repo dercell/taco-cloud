@@ -3,11 +3,13 @@ package tacos.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import tacos.data.User;
+import tacos.data.repos.JpaUserRepository;
 import tacos.service.UserDetailService;
 
 
@@ -24,13 +26,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailService(PasswordEncoder encoder){
-        List<UserDetails> userList = new ArrayList<>();
-
-        userList.add(new User("buzz", encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-        userList.add(new User("woody", encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-
-        return new InMemoryUserDetailsManager(userList);
+    public UserDetailService userDetailService(JpaUserRepository userRepository){
+        return username -> {
+            User user = userRepository.findByUsername(username);
+            if (user != null) return user;
+            throw new UsernameNotFoundException("user '" + username + "' not found");
+        };
     }
 
 }

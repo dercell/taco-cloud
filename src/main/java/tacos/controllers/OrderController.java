@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import tacos.data.TacoOrder;
-import tacos.data.repos.OrderRepository;
+import tacos.data.repos.JpaOrderRepository;
 
 @Slf4j
 @Controller
@@ -19,10 +19,10 @@ import tacos.data.repos.OrderRepository;
 @SessionAttributes("tacoOrder")
 public class OrderController {
 
-    private OrderRepository orderRepository;
+    private JpaOrderRepository orderRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository){
+    public OrderController(JpaOrderRepository orderRepository){
         this.orderRepository = orderRepository;
     }
 
